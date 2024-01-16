@@ -32,7 +32,7 @@ def get_users_by_id():
     return usuario
 
 @app.route("/usuarios")
-def get_users_by_id():
+def get_users_by_name():
     params = {
         name: "params.name",
         email: "params.email"
