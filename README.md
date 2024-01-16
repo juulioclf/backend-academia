@@ -40,7 +40,7 @@ commands:
     (bash)
     source venv/Scripts/activate
 
-    pip install flask
+    pip install -r requirements.txt
 
 
 ```
