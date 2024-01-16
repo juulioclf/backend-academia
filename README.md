@@ -23,3 +23,30 @@ ______________________________________________
 instalar python:
 https://www.python.org/downloads/windows/
 v 3.11.7
+
+
+_____________________________________________
+instalar insomnia (testes):
+https://insomnia.rest/download
+
+____________________________________________
+
+
+commands:
+
+```
+    python -m venv venv
+
+    (bash)
+    source venv/Scripts/activate
+
+    pip install flask
+
+
+```
+
+commands for run:
+
+```
+    flask --app <nome do app> run
+```
