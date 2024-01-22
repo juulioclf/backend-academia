@@ -1,6 +1,8 @@
 from flask import Flask
+from database import db
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'Chave de segurança. Deve ser um termo mais complexto'
 
 @app.route("/")
 def hello_world():
