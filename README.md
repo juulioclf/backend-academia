@@ -1,42 +1,29 @@
 meta: 
--dar um ping no através de uma rota
+-dar um ping no através de uma rota (concluida)
 
-como:
-- por meio do python com framework flask, irei conectar o banco de dados e fornecer alguma coisa em uma rota
+proximos passos:
+- criar estrutura pra usuario, treino e exercicio
 
-feito:
-- apenas ping em uma rota de testes
-
-não feito:
-- configuração do banco, conexão com banco e leitura do banco
-
-16/01/2024
+22/01/2024
 
 __________________________________________________________________________________________________________________________________________
 instalar git:
 https://www.git-scm.com/download/win
-
-repositorio git:
-https://github.com/juulioclf/backend-academia
-
 helper:
 https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
 
 command:
 git remote add origin https://github.com/juulioclf/backend-academia.git
 
-__________________________________________________________________________________________________________________________________________
-instalar python:
+python:
 https://www.python.org/downloads/windows/
 v 3.11.7
-__________________________________________________________________________________________________________________________________________
-instalar insomnia (testes):
+
+insomnia (testes):
 https://insomnia.rest/download
 
-__________________________________________________________________________________________________________________________________________
-instalar o mysql:
+mysql:
 https://dev.mysql.com/downloads/file/?id=526408
-
 __________________________________________________________________________________________________________________________________________
 
 
@@ -45,16 +32,12 @@ commands:
 ```
     python -m venv venv
 
-    (bash)
     source venv/Scripts/activate
 
     pip install -r requirements.txt
 
-
+    flask run
 ```
 
-commands for run:
-
-```
-    flask --app app run
-```
+criar arquivo .env com DATABASE_URL =
+criar arquivo .flaskenv com FLASK_APP=main:app

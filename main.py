@@ -1,8 +1,22 @@
-from flask import Flask
+from flask import Flask, request, jsonify
+from flask_migrate import Migrate
+
+from dotenv import dotenv_values
+
 from database import db
 
+from diario import Diario
+
+config = dotenv_values(".env")
+
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'Chave de segurança. Deve ser um termo mais complexto'
+
+connection = config['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = connection
+
+db.init_app(app)
+migrate = Migrate(app, db)
 
 @app.route("/")
 def hello_world():
@@ -40,3 +54,24 @@ def get_users_by_name():
         email: "params.email"
     }
     return usuario
+
+
+#### GALERA REFATORADA
+@app.route("/user", methods=['POST'])
+def post_user():
+   
+   payload = request.json
+
+   new_user = Diario(payload['titulo'], payload['disciplina'])
+
+   new_user.post_user(payload['titulo'], payload['disciplina'])
+
+   return payload
+
+
+@app.route("/user", methods=['GET'])
+def post_user():
+   
+   
+
+   return payload
