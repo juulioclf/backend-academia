@@ -7,4 +7,7 @@ cryptography===41.0.7
 python-dotenv===1.0.0
 dynaconf===3.2.4
 flask-simplelogin===0.1.2
+sqlalchemy_serializer===1.4.1
+Flask-RESTful===0.3.10
+flask_debugtoolbar===0.14.1
 
