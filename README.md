@@ -39,5 +39,6 @@ commands:
     flask run
 ```
 
-criar arquivo .env com DATABASE_URL = 'mysql+pymysql://seu_usuario:sua_senha@seu_host/sua_base_de_dados'
-criar arquivo .flaskenv com FLASK_APP=main:app
+criar arquivo .env com
+FLASK_ENV=development
+FLASK_APP=academia.app:create_app
