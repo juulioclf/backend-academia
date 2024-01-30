@@ -1,18 +1,63 @@
-from flask import abort, jsonify
+from flask import abort, jsonify, request
 from flask_restful import Resource
 
-from academia.models import Product
+from academia.models import User
+from academia.ext.database import db
 
 
-class ProductResource(Resource):
+class UserResource(Resource):
+
     def get(self):
-        products = Product.query.all() or abort(204)
-        return jsonify(
-            {"products": [product.to_dict() for product in products]}
-        )
+        try:
+            users = User.query.all()
+            if not users:
+                return jsonify({"users": []}), 200
+            return jsonify({"users": [user.to_dict() for user in users]})
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"message": "Internal Server Error"}), 500
+
+    
+    def post(self):
+        try:
+            data = request.get_json()
+            required_fields = ['email', 'username', 'password']
+
+            for field in required_fields:
+                if field not in data:
+                    return jsonify({"message": f"Campo obrigatório ausente: {field}"}), 400
+
+            existing_user = User.query.filter_by(email=data['email']).first()
+
+            if existing_user:
+                return jsonify({"message": "Endereço de e-mail já está em uso"}), 409
 
 
-class ProductItemResource(Resource):
-    def get(self, product_id):
-        product = Product.query.filter_by(id=product_id).first() or abort(404)
-        return jsonify(product.to_dict())
+            new_user = User(
+                email=data['email'],
+                username=data['username'],
+                password=data['password'],
+                type=data.get('type', 'teacher') 
+            )
+
+            db.session.add(new_user)
+            db.session.commit()
+
+            return jsonify({"message": "Usuário criado com sucesso", "user": new_user.to_dict()}), 201
+
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"message": "vish raapaz..."}), 500
+
+            
+class UserItemResource(Resource):
+    def get(self, id):
+        try:
+            user = User.query.get(id)
+            if user is None:
+                return jsonify({"message": "User not found"}), 409
+            return jsonify(user.to_dict())
+
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"message": "vish raapaz..."}), 500

@@ -10,4 +10,5 @@ flask-simplelogin===0.1.2
 sqlalchemy_serializer===1.4.1
 Flask-RESTful===0.3.10
 flask_debugtoolbar===0.14.1
+Flask-Cors===4.0.0
 
